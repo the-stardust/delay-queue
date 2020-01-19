@@ -14,8 +14,14 @@
 ## Consumer.php
     常驻进程脚本，不断的从zset里面取出任务，如果时间等于现在的时候，就把任务分发给DoWork.php
     这个脚本只负责分发任务，不负责执行任务
+    
+    脚本命令：php Consumer.php redis的host  redis的端口  zset的key
+    php Consumer.php 127.0.0.1 6380 pintuan_order2
 ## DoWork.php
     常驻进程进程脚本，用redis的list实现了简单的队列，不断从队列取任务去执行
+    
+    脚本命令：php Consumer.php redis的host  redis的端口  zset的key."_job"
+    php Consumer.php 127.0.0.1 6380 pintuan_order2_job
 ## Order.php
     这个是我比较懒，没有写测试用例，简单的写了个脚本插入redis，验证程序是否通过
         
